@@ -243,7 +243,9 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 		int index = -1;
 		index = findIndexOfAKey(key);
 		if(index != -1) {
-			return dictionary.elementAt(index).getValue().removeByValue(value);
+			if(dictionary.elementAt(index).getValue() != null && dictionary.elementAt(index).getValue().currentSize() != 0) {
+				return dictionary.elementAt(index).getValue().removeByValue(value);
+			}
 		}
 		return false;
 	}
