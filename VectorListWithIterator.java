@@ -42,10 +42,17 @@ public class VectorListWithIterator<T> implements ListInterface<T> {
 	}
 
 	/**
-	 * @return A iterator that traverses all entries.
+	 * @return An iterator that traverses all entries.
 	 */
 	public ListIteratorInterface<T> iterator() {
 		return new IteratorForVectorList();
+	}
+	
+	/**
+	 * @return An iterator.
+	 */
+	public ListIteratorInterface<T> getIterator() {
+		return iterator();
 	}
 	
 	/**
@@ -148,6 +155,7 @@ public class VectorListWithIterator<T> implements ListInterface<T> {
 		public void add(T newEntry) {
 			if(list.size() < MAX_CAPACITY) {
 				list.add(next, newEntry);
+				wasNextCalled = false;
 				next++;
 				previous++;
 			}

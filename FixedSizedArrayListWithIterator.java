@@ -285,5 +285,12 @@ public class FixedSizedArrayListWithIterator<T> implements ListInterface<T>{
 	public ListIteratorInterface<T> iterator() {
 		return new IteratorForFixedSizedArrayList();
 	}
+	
+	/**
+	 * @return An iterator.
+	 */
+	public ListIteratorInterface<T> getIterator() {
+		return iterator();
+	}
 
 }

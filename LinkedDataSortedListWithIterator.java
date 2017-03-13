@@ -22,6 +22,13 @@ public class LinkedDataSortedListWithIterator <T extends Comparable<? super T>>
 		return new IteratorForLinkedDataSortedList();
 	}
 	
+	/**
+	 * @return An iterator.
+	 */
+	public ListIteratorInterface<T> getIterator() {
+		return iterator();
+	}
+	
 	// An iterator that can do actions
 	private class IteratorForLinkedDataSortedList implements ListIteratorInterface<T> {
 		private Node next;
@@ -56,31 +63,31 @@ public class LinkedDataSortedListWithIterator <T extends Comparable<? super T>>
 			}
 		}
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public T remove() {
 			throw new UnsupportedOperationException();
 		}
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public boolean hasPrevious() {
 			throw new UnsupportedOperationException();
 		}
 		
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public T previous() {
 			throw new UnsupportedOperationException();
 		}
 		
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public void add(T newEntry) {
 			throw new UnsupportedOperationException();
@@ -399,5 +406,5 @@ public class LinkedDataSortedListWithIterator <T extends Comparable<? super T>>
 		return size == 0;
 		
 	}
-	
+
 }

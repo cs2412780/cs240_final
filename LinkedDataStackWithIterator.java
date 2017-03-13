@@ -138,7 +138,6 @@ public class LinkedDataStackWithIterator<T> implements StackInterface<T>, Iterab
 		
 		/**
 		 * Retrieve the next entry and advance the iterator by one position.
-		 * The order of next() traveses is inverse of pop().
 		 * @return The next entry.
 		 * @throws NoSuchElementException if the iterator has reached the end.
 		 */
@@ -160,4 +159,12 @@ public class LinkedDataStackWithIterator<T> implements StackInterface<T>, Iterab
 	public Iterator<T> iterator() {
 		return new IteratorForLinkedDataStack();
 	}
+	
+	/**
+	 * @return An iterator.
+	 */
+	public Iterator<T> getIterator() {
+		return iterator();
+	}
+	
 }

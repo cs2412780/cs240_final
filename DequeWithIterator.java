@@ -305,5 +305,12 @@ public class DequeWithIterator<T> implements DequeInterface<T> {
 	public DequeIterator<T> iterator() {
 		return new IteratorForDeque();
 	}
+	
+	/**
+	 * @return An iterator.
+	 */
+	public DequeIterator<T> getIterator() {
+		return iterator();
+	}
 
 }

@@ -65,24 +65,24 @@ public class LinkedDataListWithIterator<T> implements ListInterface<T> {
 		}
 		
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public T remove() {
 			throw new UnsupportedOperationException();			
 		}
 		
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public boolean hasPrevious() {
 			throw new UnsupportedOperationException();	
 		}
 		
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
-		 * 		   is not able to do a removal.
+		 * @throws UnsupportedOperationException, the iterator 
+		 * 		   is not able to do this action.
 		 */
 		public T previous() {
 			throw new UnsupportedOperationException();
@@ -549,5 +549,12 @@ public class LinkedDataListWithIterator<T> implements ListInterface<T> {
 	public ListIteratorInterface<T> iterator() {
 		return new IteratorForLinkedDataList();
 	}
-
+	
+	/**
+	 * @return An iterator.
+	 */
+	public ListIteratorInterface<T> getIterator() {
+		return iterator();
+	}
+	
 }

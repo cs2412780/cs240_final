@@ -167,5 +167,12 @@ public class SingleLinkedDataQueueWithIterator<T> implements QueueInterface<T>, 
 	public Iterator<T> iterator() {
 		return new IteratorForSingleLinkedDataQueue();
 	}
+	
+	/**
+	 * @return An iterator.
+	 */
+	public Iterator<T> getIterator() {
+		return iterator();
+	}
 
 }

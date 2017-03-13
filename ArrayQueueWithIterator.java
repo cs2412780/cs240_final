@@ -25,6 +25,13 @@ public class ArrayQueueWithIterator<T> implements QueueInterface<T>, Iterable<T>
 	}
 	
 	/**
+	 * @return An iterator.
+	 */
+	public IteratorInterface<T> getIterator() {
+		return iterator();
+	}
+	
+	/**
 	 * A iterator that can some actions.
 	 */
 	private class IteratorForArrayQueue implements IteratorInterface<T> {

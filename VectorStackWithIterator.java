@@ -21,13 +21,11 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
 		
 		private int nextPosition;
 		private int previousPosition;
-		@SuppressWarnings("unused")
-		private boolean wasNextCalled;
+		
 		
 		private IteratorForVectorStack() {
 			nextPosition = vector.size() - 1;
 			previousPosition = vector.size();
-			wasNextCalled = false;
 		}
 		/**
 		 * Check if the iterator has finished its travesal.
@@ -48,7 +46,6 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
 				T temp = vector.elementAt(nextPosition);
 				nextPosition--;
 				previousPosition--;
-				wasNextCalled = true;
 				return temp;
 			}
 			else {
@@ -58,7 +55,7 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
 		}
 		
 		/**
-		 * @throws UnsupportedOperationException if the iterator 
+		 * @throws UnsupportedOperationException, the iterator 
 		 * 		   is not able to do a removal.
 		 */
 		public void remove() {
@@ -83,7 +80,6 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
 				T temp = vector.elementAt(previousPosition);
 				previousPosition++;
 				nextPosition++;
-				wasNextCalled = true;
 				return temp;
 			}
 			else {
@@ -166,4 +162,12 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
 		return new IteratorForVectorStack();
 	}
 	
+	/**
+	 * @return An iterator.
+	 */
+	public IteratorInterface<T> getIterator() {
+		return iterator();
+	}
+	
+
 }

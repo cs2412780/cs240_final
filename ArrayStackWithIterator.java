@@ -39,6 +39,13 @@ public class ArrayStackWithIterator<T> extends ArrayStack<T> {
 	}
 	
 	/**
+	 * @return An iterator.
+	 */
+	public IteratorInterface<T> getIterator() {
+		return iterator();
+	}
+	
+	/**
 	 * An iterator that can do actions
 	 */
 	private class IteratorForArrayStack implements IteratorInterface<T>{

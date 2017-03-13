@@ -167,6 +167,13 @@ public class CircularLinkedDataQueueWithIterator<T> implements QueueInterface<T>
 		return new IteratorForCircularLinkedData();
 	}
 	
+	/**
+	 * @return An iterator.
+	 */
+	public Iterator<T> getIterator() {
+		return iterator();
+	}
+	
 	
 	/**
 	 * An iterator that can do actions
