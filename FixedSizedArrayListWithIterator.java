@@ -121,6 +121,7 @@ public class FixedSizedArrayListWithIterator<T> implements ListInterface<T>{
 		 */
 		public void add(T newEntry) {
 			if(size < arr.length) {
+				wasNextOrPreviousCalled = false;
 				FixedSizedArrayListWithIterator.this.add(next, newEntry);
 				size++;
 			}

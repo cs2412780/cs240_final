@@ -165,7 +165,7 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
     @param key  An object search key of the entry to be removed.
     @return  Either a list of the values that was associated with the search key
              or null if no such object exists or this dictionary is not initialized. */
-	public VectorListWithIterator<V> remove(K key) {
+	public VectorListWithIterator<V> removeAKey(K key) {
 		int index = -1;
 		index = findIndexOfAKey(key);
 		if(index != -1) {
@@ -243,7 +243,7 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	
 	/**
 	 * Removes a value that associatied with a key.
-	 * @param key A reseach key
+	 * @param key A search key
 	 * @param value The targt value
 	 * @return true if remove successfully.
 	 */
@@ -282,12 +282,22 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	
 	/**
 	 * Checks if a pair exists.
+	 * @param key A search key
+	 * @param value A value
+	 * @return Ture if the pair exists.
+	 */
+	public boolean cantainsAPair(K key, V value) {
+		return checkExistence(findIndexOfAKey(key), value);
+	}
+	
+	/**
+	 * Checks if a pair exists.
 	 * @param index The index of a key
 	 * @param value The associated value.
 	 * @return True if the pair exists
 	 */
 	private boolean checkExistence(int index, V value) {
-		if(dictionary.elementAt(index).getValue().isEmpty()) {
+		if(index == -1 || dictionary.elementAt(index).getValue().isEmpty()) {
 			return false;
 		}
 		return dictionary.elementAt(index).getValue().checkExistence(value);

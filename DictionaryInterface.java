@@ -3,9 +3,7 @@ package cs240_final;
 import java.util.Iterator;
 /**
    An interface for a dictionary with distinct search keys.
-   @author Frank M. Carrano
-   @author Timothy M. Henry
-   @version 4.0
+   @author Liang Dong
 */
 public interface DictionaryInterface<K, V>
 {
@@ -20,15 +18,15 @@ public interface DictionaryInterface<K, V>
    
    /** Removes a specific entry from this dictionary.
        @param key  An object search key of the entry to be removed.
-       @return  Either the value that was associated with the search key
-                or null if no such object exists. */
-   public VectorListWithIterator<V> remove(K key);
+       @return  Either a list of the values that was associated with the search key
+             	or null if no such object exists or this dictionary is not initialized. */
+   public VectorListWithIterator<V> removeAKey(K key);
    
    /** Retrieves from this dictionary the value associated with a given
        search key.
        @param key  An object search key of the entry to be retrieved.
-       @return  Either the value that is associated with the search key
-                or null if no such object exists. */
+       @return  Either the iteraot of a list that is associated with the search key
+             	or null if no such object exists. */
    public ListIteratorInterface<V> getValue(K key);
    
    /** Sees whether a specific entry is in this dictionary.
@@ -57,4 +55,20 @@ public interface DictionaryInterface<K, V>
    
    /** Removes all entries from this dictionary. */
    public void clear();
+   
+   /**
+	 * Checks if a pair exists.
+	 * @param key A search key
+	 * @param value A value
+	 * @return Ture if the pair exists.
+	 */
+	public boolean cantainsAPair(K key, V value);
+	
+	/**
+	 * Removes a value that associatied with a key.
+	 * @param key A search key
+	 * @param value The targt value
+	 * @return true if remove successfully.
+	 */
+	public boolean removeAValue(K key, V value);
 } // end DictionaryInterface
