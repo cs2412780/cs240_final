@@ -96,7 +96,8 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 		}
 		
 		/**
-		 * Checks all lists in the dictionary. 
+		 * Checks if there is a next value in the dictionary. 
+		 * @return True if there is a next value.
 		 */
 		public boolean hasNext() {
 			hasNext = iterator.hasNext();
@@ -112,6 +113,9 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 			return iterator.hasNext();
 		}
 
+		/**
+		 * @return Retrun the next value in this dictionary.
+		 */
 		public V next() {
 			if(hasNext()) {
 				if(iterator.hasNext()) {
@@ -130,45 +134,43 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	
 
 	/** Adds a new entry to this dictionary. If the given search key already
-    exists in the dictionary, replaces the corresponding value.
+    exists in the dictionary, add new value into the corresponding value list. 
+    Do nothing if the pair of key and value exist.
     @param key    An object search key of the new entry.
     @param value  An object associated with the search key.
-    @return  Either null if the new entry was added to the dictionary
-             or the value that was associated with key if that value
-             was replaced. */
-	public V add(K key, V value) {
+    @return True if add successfully */
+	public boolean add(K key, V value) {
 		if(key == null) {
-			return null;
+			return false;
 		}
-		int index = 0;
-		V temp = null;
-		while(index < dictionary.size()) {
-			if(dictionary.elementAt(index).getKey().equals(key)) {
-				if(value != null && !checkExistence(index, value))
-					dictionary.elementAt(index).setValue(value);
-				return temp;
+		int index = -1;
+		index = findIndexOfAKey(key);
+		if(index != -1) {
+			if(value != null && !checkExistence(index, value)) {
+				dictionary.elementAt(index).setValue(value);
+				return true;
 			}
-			index++;
+			return false;
 		}
-		Entry<K, V> tempEntry = new Entry<K, V>(key, value);
-		dictionary.addElement(tempEntry);
-		return temp;
+		else {
+			Entry<K, V> tempEntry = new Entry<K, V>(key, value);
+			dictionary.addElement(tempEntry);
+			return true;
+		}
 	}
 
 	/** Removes a specific entry from this dictionary.
     @param key  An object search key of the entry to be removed.
-    @return  Either the value that was associated with the search key
+    @return  Either a list of the values that was associated with the search key
              or null if no such object exists. */
 	public VectorListWithIterator<V> remove(K key) {
-		int index = 0;
-		while(index < dictionary.size()) {
-			if(dictionary.elementAt(index).getKey().equals(key)) {
-				VectorListWithIterator<V> temp = dictionary.elementAt(index).getValue();
-				dictionary.set(index, dictionary.elementAt(dictionary.size() - 1));
-				dictionary.remove(dictionary.size() - 1);
-				return temp;
-			}
-			index++;
+		int index = -1;
+		index = findIndexOfAKey(key);
+		if(index != -1) {
+			VectorListWithIterator<V> temp = dictionary.elementAt(index).getValue();
+			dictionary.set(index, dictionary.elementAt(dictionary.size() - 1));
+			dictionary.remove(dictionary.size() - 1);
+			return temp;
 		}
 		return null;
 	}
@@ -176,15 +178,13 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	/** Retrieves from this dictionary the value associated with a given
     search key.
     @param key  An object search key of the entry to be retrieved.
-    @return  Either the value that is associated with the search key
+    @return  Either the iteraot of a list that is associated with the search key
              or null if no such object exists. */
 	public ListIteratorInterface<V> getValue(K key) {
-		int index = 0;
-		while(index < dictionary.size()) {
-			if(dictionary.elementAt(index).getKey().equals(key)) {
-				return dictionary.elementAt(index).getValue().iterator();
-			}
-			index++;
+		int index = -1;
+		index = findIndexOfAKey(key);
+		if(index != -1) {
+			return dictionary.elementAt(index).getValue().iterator();
 		}
 		return null;
 	}
@@ -193,12 +193,10 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
     @param key  An object search key of the desired entry.
     @return  True if key is associated with an entry in the dictionary. */
 	public boolean contains(K key) {
-		int index = 0;
-		while(index < dictionary.size()) {
-			if(dictionary.elementAt(index).getKey().equals(key)) {
-				return true;
-			}
-			index++;
+		int index = -1;
+		index = findIndexOfAKey(key);
+		if(index != -1) {
+			return true;
 		}
 		return false;
 	}
@@ -233,6 +231,37 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	/** Removes all entries from this dictionary. */
 	public void clear() {
 		dictionary.removeAllElements();
+	}
+	
+	/**
+	 * Removes a value that associatied with a key.
+	 * @param key A reseach key
+	 * @param value The targt value
+	 * @return true if remove successfully.
+	 */
+	public boolean removeAValue(K key, V value) {
+		int index = -1;
+		index = findIndexOfAKey(key);
+		if(index != -1) {
+			return dictionary.elementAt(index).getValue().removeByValue(value);
+		}
+		return false;
+	}
+	
+	/**
+	 * Looks for an index of a key in the vector.
+	 * @param key The target key
+	 * @return The index of the key, or -1 if not found.
+	 */
+	private int findIndexOfAKey(K key) {
+		int index = 0;
+		while(index < dictionary.size()) {
+			if(dictionary.elementAt(index).getKey().equals(key)) {
+				return index;
+			}
+			index++;
+		}
+		return -1;
 	}
 	
 	/**

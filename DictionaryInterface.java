@@ -16,7 +16,7 @@ public interface DictionaryInterface<K, V>
        @return  Either null if the new entry was added to the dictionary
                 or the value that was associated with key if that value
                 was replaced. */
-   public V add(K key, V value);
+   public boolean add(K key, V value);
    
    /** Removes a specific entry from this dictionary.
        @param key  An object search key of the entry to be removed.
