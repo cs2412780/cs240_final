@@ -12,6 +12,7 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	
 	private final Vector<Entry<K, V>> dictionary;
 	private static final int DEFAULT_CAPACITY = 20;
+	private boolean wasInitialized = false;
 	
 	/**
 	 * Initialize a vetcor with a personalized capacity.
@@ -20,6 +21,7 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	public Dictionary(int capacity) {
 		Vector<Entry<K, V>> temp = (Vector<Entry<K, V>>)new Vector<Entry<K, V>>();
 		dictionary = temp;
+		wasInitialized = true;
 	}
 	
 	/**
@@ -162,7 +164,7 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	/** Removes a specific entry from this dictionary.
     @param key  An object search key of the entry to be removed.
     @return  Either a list of the values that was associated with the search key
-             or null if no such object exists. */
+             or null if no such object exists or this dictionary is not initialized. */
 	public VectorListWithIterator<V> remove(K key) {
 		int index = -1;
 		index = findIndexOfAKey(key);
@@ -203,15 +205,21 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 
 	/** Creates an iterator that traverses all search keys in this dictionary.
     @return  An iterator that provides sequential access to the search
-             keys in the dictionary. */
+             keys in the dictionary, or null if not initialzed. */
 	public Iterator<K> getKeyIterator() {
+		if(!wasInitialized) {
+			return null;
+		}
 		return new IteratorForKeys();
 	}
 
 	/** Creates an iterator that traverses all values in this dictionary.
     @return  An iterator that provides sequential access to the values
-             in this dictionary. */
+             in this dictionary, or null if not initialzed*/
 	public Iterator<V> getValueIterator() {
+		if(!wasInitialized) {
+			return null;
+		}
 		return new IteratorForValues();
 	}
 
@@ -257,6 +265,12 @@ public class Dictionary<K, V> implements DictionaryInterface<K, V> {
 	 */
 	private int findIndexOfAKey(K key) {
 		int index = 0;
+		if(!wasInitialized) {
+			return -1;
+		}
+		if(dictionary.size() == 0) {
+			return -1;
+		}
 		while(index < dictionary.size()) {
 			if(dictionary.elementAt(index).getKey().equals(key)) {
 				return index;
