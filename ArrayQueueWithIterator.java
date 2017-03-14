@@ -9,7 +9,7 @@ import homework2.QueueInterface;
  * @author iang Dong
  *
  */
-public class ArrayQueueWithIterator<T> implements QueueInterface<T>, Iterable<T>{
+public class ArrayQueueWithIterator<T> implements QueueInterface<T>{
 
 	private final T[] array;
 	private int front;
@@ -20,21 +20,21 @@ public class ArrayQueueWithIterator<T> implements QueueInterface<T>, Iterable<T>
 	/**
 	 * @return A iterator thats traverses all entries.
 	 */
-	public IteratorInterface<T> iterator() {
+	public MyIterator<T> iterator() {
 		return new IteratorForArrayQueue();
 	}
 	
 	/**
 	 * @return An iterator.
 	 */
-	public IteratorInterface<T> getIterator() {
+	public MyIterator<T> getIterator() {
 		return iterator();
 	}
 	
 	/**
 	 * A iterator that can some actions.
 	 */
-	private class IteratorForArrayQueue implements IteratorInterface<T> {
+	private class IteratorForArrayQueue implements IteratorInterface<T> , MyIterator<T>{
 		private int nextPosition;
 		private int previousPosition;
 		@SuppressWarnings("unused")

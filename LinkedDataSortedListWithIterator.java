@@ -30,7 +30,7 @@ public class LinkedDataSortedListWithIterator <T extends Comparable<? super T>>
 	}
 	
 	// An iterator that can do actions
-	private class IteratorForLinkedDataSortedList implements ListIteratorInterface<T> {
+	private class IteratorForLinkedDataSortedList implements ListIteratorInterface<T>,MyIterator<T> {
 		private Node next;
 		private int moves;
 		

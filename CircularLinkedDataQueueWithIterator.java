@@ -178,7 +178,7 @@ public class CircularLinkedDataQueueWithIterator<T> implements QueueInterface<T>
 	/**
 	 * An iterator that can do actions
 	 */
-	private class IteratorForCircularLinkedData implements Iterator<T> {
+	private class IteratorForCircularLinkedData implements Iterator<T> ,MyIterator<T>{
 		private Node next;
 		
 		private IteratorForCircularLinkedData() {

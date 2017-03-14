@@ -23,7 +23,7 @@ public class LinkedDataListWithIterator<T> implements ListInterface<T> {
 	}
 	
 	// A iterator that can do actions
-	private class IteratorForLinkedDataList implements ListIteratorInterface<T> {
+	private class IteratorForLinkedDataList implements ListIteratorInterface<T>,MyIterator<T> {
 
 		private Node next;
 		private int moves;

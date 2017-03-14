@@ -58,7 +58,7 @@ public class VectorListWithIterator<T> implements ListInterface<T> {
 	/**
 	 * A iterator
 	 */
-	private class IteratorForVectorList implements ListIteratorInterface<T> {
+	private class IteratorForVectorList implements ListIteratorInterface<T>,MyIterator<T> {
 		private int next;
 		private int previous;
 		private boolean wasNextCalled;

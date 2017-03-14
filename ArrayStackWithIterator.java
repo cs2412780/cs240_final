@@ -48,7 +48,7 @@ public class ArrayStackWithIterator<T> extends ArrayStack<T> {
 	/**
 	 * An iterator that can do actions
 	 */
-	private class IteratorForArrayStack implements IteratorInterface<T>{
+	private class IteratorForArrayStack implements IteratorInterface<T>, MyIterator<T>{
 		
 		private int nextPosition;
 		private int previousPosition;

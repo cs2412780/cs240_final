@@ -120,7 +120,7 @@ public class LinkedDataStackWithIterator<T> implements StackInterface<T>, Iterab
 	}
 
 	//An iterator that can do actions
-	private class IteratorForLinkedDataStack implements Iterator<T>{
+	private class IteratorForLinkedDataStack implements Iterator<T>, MyIterator<T>{
 		private Node next;
 		
 		private IteratorForLinkedDataStack() {

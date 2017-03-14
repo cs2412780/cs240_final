@@ -1,9 +1,7 @@
 package cs240_final;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 
-public interface IteratorInterface<T> extends Iterator<T>{
+public interface IteratorInterface<T> extends MyIterator<T>{
 
 	/**
 	 * Retrieve the previous entry and move the iterator back by one position.

@@ -9,7 +9,7 @@ import homework2.StackInterface;
  * A Vector Stack With Iterator
  * @author liang dong
  */
-public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T> {
+public class VectorStackWithIterator<T> implements StackInterface<T> {
 
 	private final Vector<T> vector;
 	private boolean initialized = false;
@@ -17,7 +17,7 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
 	/**
 	 * An iterator that can do actions
 	 */
-	private class IteratorForVectorStack implements IteratorInterface<T> {
+	private class IteratorForVectorStack implements IteratorInterface<T>, MyIterator<T> {
 		
 		private int nextPosition;
 		private int previousPosition;
@@ -157,7 +157,6 @@ public class VectorStackWithIterator<T> implements StackInterface<T>, Iterable<T
     	return vector.size();
     }
 
-	@Override
 	public IteratorInterface<T> iterator() {
 		return new IteratorForVectorStack();
 	}

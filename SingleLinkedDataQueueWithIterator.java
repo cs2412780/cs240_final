@@ -24,7 +24,7 @@ public class SingleLinkedDataQueueWithIterator<T> implements QueueInterface<T>, 
 	
 	
 	//An iterator that can do actions
-	private class IteratorForSingleLinkedDataQueue implements Iterator<T>{
+	private class IteratorForSingleLinkedDataQueue implements Iterator<T>,MyIterator<T>{
 		Node next;
 		
 		

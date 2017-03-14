@@ -24,7 +24,7 @@ public class FixedSizedArrayListWithIterator<T> implements ListInterface<T>{
 	}
 	
 	// Iterator that can do actions
-	private class IteratorForFixedSizedArrayList implements ListIteratorInterface<T>{
+	private class IteratorForFixedSizedArrayList implements ListIteratorInterface<T>,MyIterator<T>{
 
 		private int next;
 		private int previous;
